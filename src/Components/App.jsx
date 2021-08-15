@@ -1,18 +1,13 @@
 import '../Styles/App.scss';
-import React, { useState } from 'react';
+import React from 'react';
 import VouchersList from './VouchersList';
+import CartCounter from './CartCounter';
 
 export default function App(props) {
-    const [cart, setCart] = useState(0);
-
-    function handleAddToCart (){
-        setCart(cart + 1);
-    }
-
     return (
         <main>
-            <p>{cart}</p>
-            <VouchersList handleAddToCart={handleAddToCart} />
+            <CartCounter />
+            { <VouchersList /> }
         </main>
     );
 }

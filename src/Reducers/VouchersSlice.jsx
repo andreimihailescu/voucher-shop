@@ -1,7 +1,10 @@
-export const VouchersSlice = createSlice({
+import { createSlice } from '@reduxjs/toolkit';
+import useVouchersService from "../Services/useVouchersService";
+
+export const vouchersSlice = createSlice({
     name: 'vouchers',
     initialState: {
-      value: 0,
+      list: useVouchersService(),
     },
     reducers: {
       increment: (state) => {
@@ -9,18 +12,18 @@ export const VouchersSlice = createSlice({
         // doesn't actually mutate the state because it uses the Immer library,
         // which detects changes to a "draft state" and produces a brand new
         // immutable state based off those changes
-        state.value += 1
+        state.vouchers += 1
       },
       decrement: (state) => {
-        state.value -= 1
+        state.vouchers -= 1
       },
       incrementByAmount: (state, action) => {
-        state.value += action.payload
+        state.vouchers += action.payload
       },
     },
   })
   
   // Action creators are generated for each case reducer function
-  export const { increment, decrement, incrementByAmount } = counterSlice.actions
+  export const { increment, decrement, incrementByAmount } = vouchersSlice.actions
   
-  export default counterSlice.reducer
+  export default vouchersSlice.reducer

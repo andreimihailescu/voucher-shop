@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 import Voucher from './Voucher';
-import useVouchersService from "../Services/useVouchersService";
+import { useSelector } from 'react-redux';
 
 export default function VouchersList(props) {
-    const [vouchers] = useState(useVouchersService());
-    const [count, setCount] = useState(3);
+    const vouchers = useSelector(state => state.vouchers.list);
 
-    let vouchersz = [];
+    console.log(vouchers);
+    function getVouchersList(){
+        let list = [];
 
-    for(let i = 0; i < count; i++){
-        vouchersz.push(<Voucher key={i} handleAddToCart={props.handleAddToCart} voucher={vouchers[i]}/>);
+        for(let i = 0; i < vouchers.length; i++){
+            list.push(<Voucher key={i} voucher={vouchers[i]} />)
+        }
+
+        return list;
     }
 
     return (
         <React.Fragment>
-            {/* {vouchers.map(voucher => <Voucher key={voucher.id} voucher={voucher} />)} */}
-            {vouchersz}
+            {getVouchersList()}
         </React.Fragment>
     );
 }
