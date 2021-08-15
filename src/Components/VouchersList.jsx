@@ -9,7 +9,7 @@ export default function VouchersList(props) {
     let vouchersz = [];
 
     for(let i = 0; i < count; i++){
-        vouchersz.push(<Voucher key={i} voucher={vouchers[i]}/>);
+        vouchersz.push(<Voucher key={i} handleAddToCart={props.handleAddToCart} voucher={vouchers[i]}/>);
     }
 
     return (

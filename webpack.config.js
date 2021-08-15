@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: path.resolve(__dirname, './src/index.js'),
+    entry: path.resolve(__dirname, './src/index.jsx'),
     devtool: 'source-map',
     module: {
         rules: [
@@ -15,6 +15,10 @@ module.exports = {
                 enforce: "pre",
                 use: ["source-map-loader"],
             },
+            {
+                test: /\.(s(a|c)ss)$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
         ],
     },
     resolve: {
